@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 import { aboutContent } from "@/lib/content";
 import MetricsDashboard from "./MetricsDashboard";
 
@@ -32,12 +33,20 @@ export default function About() {
             ))}
           </div>
 
-          <a
-            href="/about"
-            className="inline-block mt-4 text-accent hover:text-accent-hover font-medium transition-colors"
-          >
-            Read my full story &rarr;
-          </a>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
+            <a
+              href="/about"
+              className="text-accent hover:text-accent-hover font-medium transition-colors"
+            >
+              Read my full story &rarr;
+            </a>
+            <Link
+              href="/how-i-built-this"
+              className="text-text-tertiary hover:text-accent font-medium transition-colors"
+            >
+              How I PM&apos;d this website &rarr;
+            </Link>
+          </div>
         </motion.div>
 
         {/* Stats row */}

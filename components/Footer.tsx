@@ -1,6 +1,7 @@
 "use client";
 
 import { Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
 import { siteConfig } from "@/lib/content";
 
 export default function Footer() {
@@ -28,6 +29,12 @@ export default function Footer() {
           >
             <Mail size={16} />
           </a>
+          <Link
+            href="/how-i-built-this"
+            className="text-xs text-text-tertiary hover:text-accent transition-colors"
+          >
+            How I PM&apos;d this website &rarr;
+          </Link>
           <span className="text-xs text-text-tertiary">
             Built with Next.js &middot; Deployed on Vercel
           </span>

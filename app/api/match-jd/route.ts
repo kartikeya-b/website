@@ -2,7 +2,9 @@ import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest, NextResponse } from "next/server";
 import { resumeContext } from "@/lib/resume-context";
 
-const anthropic = new Anthropic();
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,7 +25,7 @@ export async function POST(req: NextRequest) {
     }
 
     const message = await anthropic.messages.create({
-      model: "claude-haiku-4-20250414",
+      model: "claude-3-haiku-20240307",
       max_tokens: 1024,
       messages: [
         {
@@ -58,10 +60,11 @@ Keep the tone professional but confident. Be specific — reference actual roles
       message.content[0].type === "text" ? message.content[0].text : "";
 
     return NextResponse.json({ analysis: responseText });
-  } catch (error) {
-    console.error("JD Match API error:", error);
+  } catch (error: unknown) {
+    const errMsg = error instanceof Error ? error.message : "Unknown error";
+    console.error("JD Match API error:", errMsg);
     return NextResponse.json(
-      { error: "Something went wrong. Please try again." },
+      { error: `Something went wrong: ${errMsg}` },
       { status: 500 }
     );
   }

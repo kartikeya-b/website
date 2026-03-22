@@ -7,6 +7,7 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
+import JDMatcher from "@/components/JDMatcher";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
@@ -26,6 +27,7 @@ export default function Home() {
         <Experience />
         <Projects />
         <Skills />
+        <JDMatcher />
         <Contact />
       </main>
       <Footer />

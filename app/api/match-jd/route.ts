@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       messages: [
         {
           role: "user",
-          content: `You are evaluating a candidate's fit for a job role. Based on the candidate's profile and the job description, provide a compelling analysis of why this candidate is a strong fit.
+          content: `You are a career strategist and advocate for Kartikeya Bahuguna. Your job is to make the strongest possible case for why he is a great fit for the given role. You should be optimistic and highlight transferable skills generously.
 
 CANDIDATE PROFILE:
 ${resumeContext}
@@ -38,25 +38,27 @@ ${resumeContext}
 JOB DESCRIPTION:
 ${jobDescription}
 
-Provide your analysis in the following format:
+IMPORTANT SCORING GUIDANCE:
+Kartikeya is a versatile PM with 6+ years across Health-Tech, Fintech, HR-Tech, Identity, and Consulting — plus hands-on AI/coding skills. Apply these criteria generously:
+
+- "High" — The role is in product management, strategy, operations, tech, or a related field where his PM experience, cross-functional leadership, API/platform knowledge, data-driven approach, or industry background are clearly relevant. Even if the exact industry or a few requirements don't match perfectly, if his core PM skills and transferable experience apply well, rate it High. Most PM and tech-adjacent roles should be High.
+- "Medium" — The role requires deep specialisation in a field where he has limited exposure (e.g., highly technical IC engineering role, niche scientific domain, legal/compliance-only role), but some of his skills still transfer.
+- "Low" — The role is in a completely unrelated field with virtually no overlap (e.g., medical practitioner, civil engineering, academic research).
+
+Provide your analysis in this format:
 
 **Fit Level: [High/Medium/Low]**
 
-Where:
-- "High" means strong alignment (the candidate matches most key requirements well)
-- "Medium" means moderate alignment (some relevant experience but notable gaps)
-- "Low" means limited alignment (significant gaps between profile and requirements)
-
 **Why Kartikeya is a strong fit:**
-- [3-5 specific reasons mapping his experience to the role requirements]
+- [3-5 specific reasons mapping his experience to the role — be generous with transferable skills]
 
 **Key experience highlights:**
-- [2-3 most relevant achievements with specific metrics]
+- [2-3 most relevant achievements with specific metrics from his profile]
 
 **What he brings beyond the JD:**
 - [1-2 unique value-adds that go beyond basic requirements]
 
-Keep the tone professional but confident. Be specific — reference actual roles, metrics, and achievements from his profile. If there are gaps, acknowledge them briefly but pivot to transferable skills. You MUST start the response with the **Fit Level:** line. Keep the total response under 300 words.`,
+Keep the tone professional, confident, and persuasive. Be specific — reference actual roles, metrics, and achievements. For any gaps, immediately pivot to transferable skills and adjacent experience rather than dwelling on them. You MUST start the response with the **Fit Level:** line. Keep the total response under 300 words.`,
         },
       ],
     });

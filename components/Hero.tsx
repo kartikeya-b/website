@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Linkedin, Mail, ExternalLink } from "lucide-react";
+import { Linkedin, Mail, ExternalLink, Sparkles } from "lucide-react";
 import { heroContent, siteConfig } from "@/lib/content";
 import ProductBrief from "./ProductBrief";
 
@@ -65,6 +65,13 @@ export default function Hero() {
               className="px-6 py-3 border border-border hover:border-border-hover text-text-primary font-medium rounded-lg transition-colors hover:bg-bg-secondary"
             >
               Download Resume
+            </a>
+            <a
+              href="#jd-matcher"
+              className="flex items-center gap-2 px-6 py-3 border border-accent/30 hover:border-accent text-accent font-medium rounded-lg transition-all hover:bg-accent/10"
+            >
+              <Sparkles size={16} />
+              Am I the right fit?
             </a>
           </motion.div>
 

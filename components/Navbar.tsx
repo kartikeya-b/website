@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
+  { label: "Hire Fit", href: "#jd-matcher" },
   { label: "Contact", href: "#contact" },
 ];
 

@@ -170,6 +170,25 @@ export default function JDMatcher() {
             ) : analysis ? (
               <div className="prose prose-sm max-w-none">
                 {analysis.split("\n").map((line, i) => {
+                  // Render Fit Level with color badge
+                  const fitMatch = line.match(/\*?\*?Fit Level:\s*(High|Medium|Low)\*?\*?/i);
+                  if (fitMatch) {
+                    const level = fitMatch[1].toLowerCase();
+                    const colorMap: Record<string, { bg: string; text: string; border: string; label: string }> = {
+                      high: { bg: "bg-green-500/15", text: "text-green-600 dark:text-green-400", border: "border-green-500/30", label: "High" },
+                      medium: { bg: "bg-yellow-500/15", text: "text-yellow-600 dark:text-yellow-400", border: "border-yellow-500/30", label: "Medium" },
+                      low: { bg: "bg-red-500/15", text: "text-red-600 dark:text-red-400", border: "border-red-500/30", label: "Low" },
+                    };
+                    const style = colorMap[level] || colorMap.medium;
+                    return (
+                      <div key={i} className="flex items-center gap-3 mb-3">
+                        <span className="text-base font-semibold text-text-primary">Fit Level:</span>
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-bold border ${style.bg} ${style.text} ${style.border}`}>
+                          {style.label}
+                        </span>
+                      </div>
+                    );
+                  }
                   if (line.startsWith("**") && line.endsWith("**")) {
                     return (
                       <h3

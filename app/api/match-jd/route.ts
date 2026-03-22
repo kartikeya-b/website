@@ -40,7 +40,12 @@ ${jobDescription}
 
 Provide your analysis in the following format:
 
-**Fit Score: X/10**
+**Fit Level: [High/Medium/Low]**
+
+Where:
+- "High" means strong alignment (the candidate matches most key requirements well)
+- "Medium" means moderate alignment (some relevant experience but notable gaps)
+- "Low" means limited alignment (significant gaps between profile and requirements)
 
 **Why Kartikeya is a strong fit:**
 - [3-5 specific reasons mapping his experience to the role requirements]
@@ -51,7 +56,7 @@ Provide your analysis in the following format:
 **What he brings beyond the JD:**
 - [1-2 unique value-adds that go beyond basic requirements]
 
-Keep the tone professional but confident. Be specific — reference actual roles, metrics, and achievements from his profile. If there are gaps, acknowledge them briefly but pivot to transferable skills. Keep the total response under 300 words.`,
+Keep the tone professional but confident. Be specific — reference actual roles, metrics, and achievements from his profile. If there are gaps, acknowledge them briefly but pivot to transferable skills. You MUST start the response with the **Fit Level:** line. Keep the total response under 300 words.`,
         },
       ],
     });

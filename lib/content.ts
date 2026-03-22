@@ -136,7 +136,7 @@ export const experienceData = [
   },
 ];
 
-export const projectsData = [
+export const sideProjectsData = [
   {
     title: "Product Buddy",
     status: "In Development",
@@ -176,6 +176,72 @@ export const projectsData = [
     link: "https://rose-cup-00e.notion.site/KartikeyaB-Product-Management-Journey-17efdce6d4b48053a464cd30a5717848",
   },
 ];
+
+export const professionalProjectsData = [
+  {
+    title: "Automated Workflows for Recruiters",
+    company: "Joveo",
+    status: "Shipped",
+    description:
+      "Spearheaded a drag-and-drop workflow automation platform that eliminated manual recruiter tasks — auto-screening, interview scheduling, and follow-ups — reducing repetitive work by 50%.",
+    impact: "50% reduction in manual tasks",
+    tags: ["HR Tech", "Workflow Automation", "CRM"],
+    internalLink: "/projects/automated-workflows",
+  },
+  {
+    title: "Recruitment Marketing CRM",
+    company: "Joveo",
+    status: "Shipped",
+    description:
+      "Led the end-to-end development of a full-stack Recruitment CRM with AI-powered Talent Match scoring, automated email/SMS campaigns, and unified candidate profiles — boosting recruiter efficiency by 60%.",
+    impact: "60% reduction in recruiter workload",
+    tags: ["HR Tech", "AI/ML", "SaaS", "CRM"],
+    internalLink: "/projects/recruitment-crm",
+  },
+  {
+    title: "API-Driven Income & Work Verification",
+    company: "TartanHQ",
+    status: "Shipped",
+    description:
+      "Built an API-first income and employment verification solution with real-time HRMS integrations and AI-powered payslip fraud detection — cutting verification time from days to minutes.",
+    impact: "80% faster verification turnaround",
+    tags: ["Fintech", "API-First", "Fraud Detection", "OCR"],
+    internalLink: "/projects/income-verification",
+  },
+  {
+    title: "KYC Vertical — Identity Verification Suite",
+    company: "TartanHQ",
+    status: "Shipped",
+    description:
+      "Built a comprehensive KYC verification suite with real-time API-driven identity, financial, and address verification — reducing verification time by 90% and fraud cases by 60%.",
+    impact: "90% faster KYC verification",
+    tags: ["Fintech", "KYC", "Compliance", "API"],
+    internalLink: "/projects/kyc-vertical",
+  },
+  {
+    title: "B2B Onboardings — HRMS Sync Dashboard",
+    company: "TartanHQ",
+    status: "Shipped",
+    description:
+      "Led the development of an API-driven HRMS sync platform enabling enterprises to bulk onboard employees, sync workforce data, and automate payroll/insurance integrations at 10x speed.",
+    impact: "10x faster employee onboarding",
+    tags: ["B2B", "HRMS", "API Platform", "Enterprise"],
+    internalLink: "/projects/b2b-onboardings",
+  },
+  {
+    title: "New Product Initiatives (NPI) at Equifax India",
+    company: "Equifax",
+    status: "Shipped",
+    description:
+      "Acted as India SPOC driving 10+ identity and verification APIs with 99.9% accuracy, co-created 15+ regional business cases with global PMs, and reduced B2B client API integration time by 40%.",
+    impact: "10+ APIs launched, 40% faster integrations",
+    tags: ["Identity Verification", "Global PM", "B2B", "API"],
+    internalLink: "/projects/equifax-npi",
+  },
+];
+
+// Combined for backward compatibility
+export const projectsData = [...sideProjectsData];
 
 export const skillsData = [
   {

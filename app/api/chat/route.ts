@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     }
 
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: "claude-3-5-sonnet-20241022",
       max_tokens: 512,
       system: `You are an AI assistant on Kartikeya Bahuguna's portfolio website. Answer questions about Kartikeya based on his profile below. Be conversational, concise, and professional. Answer in 2-4 sentences unless a longer answer is needed. If asked something unrelated to Kartikeya or his professional experience, politely redirect by saying you're here to help with questions about Kartikeya's background and experience.
 

@@ -38,30 +38,41 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 px-6">
-      <div className="max-w-[1200px] mx-auto" ref={ref}>
+    <section id="contact" className="py-24 px-6">
+      <div className="max-w-4xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="grid md:grid-cols-2 gap-12"
+          className="card-glow bg-gradient-to-b from-bg-secondary/50 to-transparent border border-border rounded-[3rem] p-12 md:p-20 relative overflow-hidden"
         >
-          {/* Left side */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-6">
-              Let&apos;s Talk
-            </h2>
-            <p className="text-text-secondary text-base leading-relaxed mb-8">
-              I&apos;m currently open to Senior Product Manager roles in
-              health-tech, fintech, and B2B SaaS across the UK. Whether you have
-              an opportunity, a question, or just want to connect — I&apos;d
-              love to hear from you.
-            </p>
+          {/* Dot pattern background */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8Y2lyY2xlIGN4PSI0IiBjeT0iNCIgcj0iMSIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjA1Ii8+Cjwvc3ZnPg==')] opacity-50" />
 
-            <div className="space-y-4">
+          <div className="relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-6xl font-display font-bold text-text-primary mb-4">
+                Let&apos;s build something<br />exceptional.
+              </h2>
+              <p className="text-lg text-text-secondary max-w-xl mx-auto">
+                Currently open for Senior PM roles in health-tech, fintech, and B2B SaaS across the UK. If you&apos;re looking for someone to drive your product vision forward, let&apos;s chat.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="flex flex-wrap justify-center gap-6 mb-12"
+            >
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="flex items-center gap-3 text-text-secondary hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-text-secondary hover:text-accent transition-colors"
               >
                 <Mail size={18} />
                 <span className="text-sm">{siteConfig.email}</span>
@@ -70,102 +81,87 @@ export default function Contact() {
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-text-secondary hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-text-secondary hover:text-accent transition-colors"
               >
                 <Linkedin size={18} />
                 <span className="text-sm">LinkedIn</span>
               </a>
-              <div className="flex items-center gap-3 text-text-secondary">
+              <span className="flex items-center gap-2 text-text-secondary">
                 <MapPin size={18} />
                 <span className="text-sm">{siteConfig.location}</span>
-              </div>
-            </div>
-          </div>
+              </span>
+            </motion.div>
 
-          {/* Right side - Form */}
-          <div className="bg-bg-secondary border border-border rounded-xl p-6">
-            {status === "sent" ? (
-              <div className="flex flex-col items-center justify-center h-full py-12 text-center">
-                <div className="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center mb-4">
-                  <Send size={20} className="text-success" />
-                </div>
-                <h3 className="text-lg font-semibold text-text-primary mb-2">
-                  Message Sent!
-                </h3>
-                <p className="text-sm text-text-secondary">
-                  Thanks for reaching out. I&apos;ll get back to you soon.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm text-text-secondary mb-1.5"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-2.5 bg-bg-primary border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent transition-colors"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm text-text-secondary mb-1.5"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-2.5 bg-bg-primary border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent transition-colors"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm text-text-secondary mb-1.5"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={4}
-                    className="w-full px-4 py-2.5 bg-bg-primary border border-border rounded-lg text-text-primary text-sm focus:outline-none focus:border-accent transition-colors resize-none"
-                    placeholder="Your message..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="w-full py-3 bg-accent hover:bg-accent-hover text-white font-medium rounded-lg transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-                >
-                  {status === "sending" ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      Send Message <Send size={16} />
-                    </>
-                  )}
-                </button>
-                {status === "error" && (
-                  <p className="text-sm text-red-500 text-center">
-                    Something went wrong. Please try emailing me directly.
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="max-w-lg mx-auto"
+            >
+              {status === "sent" ? (
+                <div className="flex flex-col items-center justify-center py-8 text-center">
+                  <div className="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center mb-4">
+                    <Send size={20} className="text-success" />
+                  </div>
+                  <h3 className="text-lg font-semibold font-display text-text-primary mb-2">
+                    Message Sent!
+                  </h3>
+                  <p className="text-sm text-text-secondary">
+                    Thanks for reaching out. I&apos;ll get back to you soon.
                   </p>
-                )}
-              </form>
-            )}
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        className="w-full px-4 py-3 bg-bg-primary/50 border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-accent transition-colors"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        className="w-full px-4 py-3 bg-bg-primary/50 border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-accent transition-colors"
+                        placeholder="your@email.com"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <textarea
+                      name="message"
+                      required
+                      rows={4}
+                      className="w-full px-4 py-3 bg-bg-primary/50 border border-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-accent transition-colors resize-none"
+                      placeholder="Your message..."
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="w-full py-4 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full transition-colors disabled:opacity-50 flex items-center justify-center gap-2 text-lg"
+                  >
+                    {status === "sending" ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        Say Hello <Send size={18} />
+                      </>
+                    )}
+                  </button>
+                  {status === "error" && (
+                    <p className="text-sm text-red-500 text-center">
+                      Something went wrong. Please try emailing me directly.
+                    </p>
+                  )}
+                </form>
+              )}
+            </motion.div>
           </div>
         </motion.div>
       </div>

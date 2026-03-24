@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { metricsData } from "@/lib/content";
 
 function AnimatedCounter({
@@ -18,8 +18,7 @@ function AnimatedCounter({
   useEffect(() => {
     if (!shouldAnimate) return;
 
-    let start = 0;
-    const duration = 1500;
+    const duration = 2000;
     const startTime = performance.now();
 
     const animate = (currentTime: number) => {
@@ -51,22 +50,36 @@ export default function MetricsDashboard() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <div
-      ref={ref}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
-    >
-      {metricsData.map((metric, i) => (
-        <div key={i} className="text-center p-6">
-          <div className="text-3xl md:text-4xl font-bold text-accent mb-1">
-            <AnimatedCounter
-              value={metric.value}
-              suffix={metric.suffix}
-              shouldAnimate={isInView}
-            />
+    <div className="breakout mt-16">
+      <div
+        ref={ref}
+        className="py-16 bg-bg-secondary/50 border-y border-border backdrop-blur-sm"
+      >
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {metricsData.map((metric, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="text-center"
+              >
+                <div className="text-4xl md:text-5xl font-display font-bold text-accent mb-2">
+                  <AnimatedCounter
+                    value={metric.value}
+                    suffix={metric.suffix}
+                    shouldAnimate={isInView}
+                  />
+                </div>
+                <div className="text-xs font-mono text-text-tertiary uppercase tracking-widest">
+                  {metric.label}
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <div className="text-sm text-text-secondary">{metric.label}</div>
         </div>
-      ))}
+      </div>
     </div>
   );
 }

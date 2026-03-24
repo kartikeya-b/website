@@ -55,10 +55,41 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-sans, system-ui, sans-serif);
+  cursor: none;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Custom cursor */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hovering {
+  transform: translate(-50%, -50%) scale(1.8);
+  background: var(--accent);
+  border-color: var(--accent);
+  opacity: 0.4;
+}
+
+/* Restore default cursor on touch devices & inputs */
+@media (hover: none) {
+  body { cursor: auto; }
+  .custom-cursor { display: none; }
+}
+input, textarea, select, button, a, [role="button"] {
+  cursor: none;
 }
 
 /* Display font utility */
@@ -123,6 +154,25 @@ html {
   animation: blink 1s step-end infinite;
 }
 
+/* Typewriter animation */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes caret-blink {
+  0%, 100% { border-right-color: var(--accent); }
+  50% { border-right-color: transparent; }
+}
+
+.typewriter-line {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--accent);
+  animation: typewriter 1.5s steps(40, end) forwards, caret-blink 0.75s step-end infinite;
+  width: 0;
+}
+
 /* Smooth theme transition */
 * {
   transition-property: background-color, border-color;
@@ -134,6 +184,52 @@ html {
 a, button, [role="button"] {
   transition-property: background-color, border-color, color, opacity, transform;
   transition-duration: 0.2s;
+}
+
+/* Horizontal scroll carousel */
+.horizontal-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+.horizontal-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Fade edges for horizontal scroll */
+.scroll-fade {
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+/* Parallax container */
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow effect on hover for cards */
+.card-glow {
+  position: relative;
+}
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6, #ec4899);
+  opacity: 0;
+  z-index: -1;
+  filter: blur(12px);
+  transition: opacity 0.5s ease;
+}
+.card-glow:hover::before {
+  opacity: 0.15;
 }
 
 /* Chatbot CTA shiny gradient animation */
@@ -169,6 +265,26 @@ a, button, [role="button"] {
   100% { background-position: 0% 50%; }
 }
 
+/* Full-width breakout utility */
+.breakout {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* Sticky scroll container */
+.sticky-scroll-container {
+  position: relative;
+}
+.sticky-scroll-left {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -178,4 +294,6 @@ a, button, [role="button"] {
   html {
     scroll-behavior: auto;
   }
+  body { cursor: auto; }
+  .custom-cursor { display: none; }
 }

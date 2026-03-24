@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { useRef, useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -51,6 +52,65 @@ const sections = [
   },
 ];
 
+const terminalCommands = [
+  { cmd: "$ identify-problem", output: "Standing out in a saturated PM job market" },
+  { cmd: "$ define-users", output: "Hiring managers, recruiters — 30s attention span" },
+  { cmd: "$ set-requirements", output: "Hook in 5s, differentiate in 15s, convert in 30s" },
+  { cmd: "$ choose-stack", output: "Next.js + Tailwind + Framer Motion + Vercel" },
+  { cmd: "$ ship-v1", output: "Portfolio deployed ✓" },
+];
+
+function TerminalIntro() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [visibleLines, setVisibleLines] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    if (visibleLines >= terminalCommands.length) return;
+    const timer = setTimeout(() => {
+      setVisibleLines((v) => v + 1);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [isInView, visibleLines]);
+
+  return (
+    <div ref={ref} className="mb-16">
+      <div className="bg-code-bg border border-border rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-4 py-3 bg-bg-secondary border-b border-border">
+          <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+          <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+          <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+          <span className="ml-3 text-xs font-mono text-text-tertiary">
+            build_portfolio.sh
+          </span>
+        </div>
+        <div className="p-6 font-mono text-sm space-y-3 min-h-[240px]">
+          {terminalCommands.map((line, i) => {
+            if (i >= visibleLines) return null;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-accent">{line.cmd}</div>
+                <div className="text-text-secondary ml-2">→ {line.output}</div>
+              </motion.div>
+            );
+          })}
+          {visibleLines < terminalCommands.length && (
+            <div className="text-accent">
+              $ <span className="inline-block w-2 h-4 bg-accent animate-blink" />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function HowIBuiltThis() {
   return (
     <>
@@ -70,31 +130,35 @@ export default function HowIBuiltThis() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">
+            <h1 className="text-4xl md:text-5xl font-display font-bold text-text-primary mb-2">
               How I&apos;d PM This Website
             </h1>
-            <p className="text-text-secondary mb-10">
+            <p className="text-text-secondary text-lg mb-10">
               The product thinking behind every pixel
             </p>
 
-            <div className="space-y-10">
+            {/* Terminal intro */}
+            <TerminalIntro />
+
+            <div className="space-y-12">
               {sections.map((section, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
+                  transition={{ delay: 0.2 + i * 0.08, duration: 0.4 }}
+                  className="relative pl-6 border-l-2 border-border hover:border-accent transition-colors"
                 >
-                  <h2 className="text-xl font-semibold text-text-primary mb-3">
+                  <h2 className="text-xl font-bold font-display text-text-primary mb-3">
                     {section.title}
                   </h2>
                   {section.content && (
-                    <p className="text-text-secondary leading-relaxed">
+                    <p className="text-text-secondary leading-relaxed text-lg">
                       {section.content}
                     </p>
                   )}
                   {section.bullets && (
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {section.bullets.map((bullet, j) => (
                         <li
                           key={j}

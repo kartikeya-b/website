@@ -13,11 +13,13 @@ import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
 import ChatBot from "@/components/ChatBot";
 import F1Loader from "@/components/F1Loader";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function Home() {
   return (
     <>
       <F1Loader />
+      <CustomCursor />
       {/* Animated blob background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-accent/10 blur-[120px] animate-blob mix-blend-screen" />
